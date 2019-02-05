@@ -48,5 +48,37 @@
         "example": "https://<host>[:<port>][/<path>][?<query params>]"
       }
     }
+  },
+  "object_url_label": {
+    "message": "Download URL",
+    "description": "Download url input label."
+  },
+  "copy_from_clipboard": {
+    "message": "Aus Zwischenablage einfügen",
+    "description": "Tooltip for copy from clipboard button."
+  },
+  "remove_button": {
+    "message": "Lösche alle aktiven Cookies!",
+    "description": "Remove all cookies button text."
+  },
+  "filter_label": {
+    "message": "Filter",
+    "description": "Filter field label."
+  },
+  "delete_all_button": {
+    "message": "Lösche alle gefilterten Cookies",
+    "description": "Delete all filter results button text."
+  },
+  "cookie_manager": {
+    "message": "Cookie Manager öffnen",
+    "Description": "Open cookie manager button text"
+  },
+  "clear_filter": {
+    "message": "Filter zurücksetzen",
+    "description": "Clear filter button tooltip."
+  },
+  "none": {
+    "message": "Keine",
+    "description": "Will be displayed, when no cookies were found."
   }
 }

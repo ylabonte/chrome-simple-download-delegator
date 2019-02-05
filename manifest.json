@@ -24,14 +24,26 @@
     "default_popup": "popup.html"
   },
   "permissions": [
+    "clipboardRead",
     "activeTab",
     "storage",
     "cookies",
-    "tabs"
+    "tabs",
+    "http://*/*",
+    "https://*/*"
   ],
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true
+  },
+  "content_scripts": [{
+    "js": ["content.js"]
+  }],
+  "background": {
+    "scripts": [
+      "background_cookies.js",
+      "background.js"
+    ]
   },
   "options_page": "options.html"
 }

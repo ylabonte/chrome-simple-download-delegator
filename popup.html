@@ -7,29 +7,53 @@
     <style>
         body {
             min-width: 320px;
-            max-width: 540px;
+            width: 540px;
         }
     </style>
 </head>
 <body>
 <div class="row">
     <div class="col s12">
-        <div class="input-field">
-            <input id="objectUrl" type="text">
-            <label for="objectUrl" data-i18n-message="object_url_label"></label>
+        <div class="input-field file-field">
+            <button class="btn-floating btn blue" data-clipboard-to="#objectUrl" data-i18n-message="copy_from_clipboard" data-i18n-attribute="data-tooltip">
+                <i class="material-icons left">arrow_forward</i>
+            </button>
+            <div class="file-path-wrapper">
+                <!--<input id="objectUrl" type="text">-->
+                <textarea id="objectUrl" class="materialize-textarea"></textarea>
+                <label for="objectUrl" data-i18n-message="object_url_label"></label>
+            </div>
         </div>
     </div>
-    <div class="col s12">
-        <button class="waves-effect waves-light btn" id="goToOptions" data-i18n-message="go_to_options">
-            <i class="material-icons right">settings</i>
+
+    <blockquote class="col s12" style="overflow: scroll;">
+        <div class="green-text" id="basicAuthOut">No HTTP Basic Auth for current page detected</div>
+        <div>Detected Cookies:</div>
+        <code id="cookiesOut">
+            None
+        </code>
+    </blockquote>
+
+    <div class="col s4">
+        <button class="waves-effect waves-light btn col m6 s12" id="goToOptions" data-i18n-message="go_to_options">
+            <i class="material-icons left">settings</i>
         </button>
-        <button class="waves-effect waves-light btn" id="startScraping" data-i18n-message="send_to_remote">
+    </div>
+    <div class="col s4">
+        <button class="waves-effect waves-light btn col m6 s12" id="cookieManager" data-i18n-message="cookie_manager">
+            <i class="material-icons left">table_chart</i>
+        </button>
+    </div>
+    <div class="col s4">
+        <button class="waves-effect waves-light btn col m6 s12" id="sendToRemote" data-i18n-message="send_to_remote">
             <i class="material-icons right">send</i>
         </button>
     </div>
 </div>
 <script src="vendor/jquery/jquery-3.3.1.min.js"></script>
 <script src="vendor/materialize/js/materialize.min.js"></script>
+<script src="common.js"></script>
+<script src="cookies_base.js"></script>
 <script src="popup.js"></script>
 </body>
 </html>
