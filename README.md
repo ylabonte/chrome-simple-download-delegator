@@ -1,4 +1,4 @@
-# Simple Download Forwarder
+# Simple Download Delegator (Google Chrome extension)
 
 This Chrome Extension should be able to send (HTTP POST) an url bundled with the current session context (cookies
 of the active tab) and a specified download location as a json payload to a configurable endpoint.

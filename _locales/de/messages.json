@@ -1,6 +1,6 @@
 {
   "name": {
-    "message": "Simple Download Forwarder",
+    "message": "Simple Download Delegator",
     "description": "Extension title."
   },
   "description": {
@@ -8,11 +8,11 @@
     "description": "Extension description."
   },
   "default_title_active": {
-    "message": "Simple Download Forwarder",
+    "message": "Simple Download Delegator",
     "description": "Extension icon tooltip when extension is active."
   },
   "default_title_inactive": {
-    "message": "Simple Download Forwarder is inactive",
+    "message": "Simple Download Delegator is inactive",
     "description": "Extension icon tooltip when extension is inactive."
   },
   "target_label": {
