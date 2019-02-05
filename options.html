@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="vendor/materialize/css/materialize.min.css" media="screen,projection">
+</head>
+<body>
+<div class="row">
+    <form class="col s12">
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="remote_target" type="url" class="validate">
+                <label for="remote_target" data-i18n-message="target_label"></label>
+                <span class="helper-text" data-error="wrong" data-success="right" data-i18n-message="target_helper_text"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <button class="waves-effect waves-light btn" data-i18n-message="settings_save_button">
+                    <i class="material-icons right">save</i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+<script src="vendor/jquery/jquery-3.3.1.min.js"></script>
+<script src="vendor/materialize/js/materialize.min.js"></script>
+<script src="options.js"></script>
+</html>

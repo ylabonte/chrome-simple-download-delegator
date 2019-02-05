@@ -1,0 +1,56 @@
+{
+  "name": {
+    "message": "Simple Download Forwarder",
+    "description": "Extension title."
+  },
+  "description": {
+    "message": "Send a given URL including the session context (cookies) of the current tab, bundled as json to a configurable target.",
+    "description": "Extension description."
+  },
+  "default_title_active": {
+    "message": "Simple Download Forwarder",
+    "description": "Extension icon tooltip when extension is active."
+  },
+  "default_title_inactive": {
+    "message": "Simple Download Forwarder is inactive",
+    "description": "Extension icon tooltip when extension is inactive."
+  },
+  "target_label": {
+    "message": "Remote target URL",
+    "description": "Default target label."
+  },
+  "target_placeholder": {
+    "message": "http[s]://<host>[:<port>][/<path>][?<query params>]",
+    "description": "Default target."
+  },
+  "target_helper_text": {
+    "message": "Please enter a valid URL (http[s]://<host>[:<port>][/<path>][?<query params>]).",
+    "description": "Default target helper text."
+  },
+  "settings_save_button": {
+    "message": "Save",
+    "description": "Save button inner html."
+  },
+  "go_to_options": {
+    "message": "Open settings",
+    "description": "Button: Go to options."
+  },
+  "send_to_remote": {
+    "message": "Send to remote",
+    "description": "Button: Send to remote."
+  },
+  "log_set_target": {
+    "message": "Target set to $TARGET$",
+    "description": "Display message when saving the target.",
+    "placeholders": {
+      "target": {
+        "content": "$1",
+        "example": "https://<host>[:<port>][/<path>][?<query params>]"
+      }
+    }
+  },
+  "object_url_label": {
+    "message": "Download URL",
+    "description": "Download url input label."
+  }
+}

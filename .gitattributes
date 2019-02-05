@@ -1,0 +1,6 @@
+*           text=auto
+*.jpg       binary
+*.png       binary
+*.7z        binary
+*.min.js    binary
+*.min.css   binary
