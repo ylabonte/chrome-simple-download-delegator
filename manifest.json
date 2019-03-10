@@ -3,6 +3,7 @@
   "version": "0.1",
   "version_name": "pre-alpha kevin",
   "description": "__MSG_description__",
+  "author": "Yannic Labonte <yannic.labonte@gmail.com>",
   "default_locale": "en",
   "manifest_version": 2,
   "icons": {
@@ -37,7 +38,8 @@
     "open_in_tab": true
   },
   "content_scripts": [{
-    "js": ["content.js"]
+    "js": ["content.js"],
+    "matches": ["*://*/*"]
   }],
   "background": {
     "scripts": [

@@ -1,7 +1,30 @@
-const updateCookiesList = url => {
-  /**
-   * Gather cookies for active tab
-   */
+$(document).ready(() => {
+
+  $('#objectUrl').on('change', () => {
+    updateCookiesList();
+  });
+
+  $('#sendToRemote').on('click', () => {
+    let requestPayload = {
+      url: $('#objectUrl').val(),
+      header: {
+        Cookie: ""
+      },
+      userAgent: navigator.userAgent,
+      cookies: document.cookiesArray
+    };
+    document.cookiesArray.forEach(cookie => {
+      requestPayload.header.Cookie += cookie.name + '=' + cookie.value + ';';
+    });
+    console.log(requestPayload);
+    console.log(JSON.stringify(requestPayload));
+  });
+})
+
+function updateCookiesList() {
+  const url = $('#objectUrl').val();
+  if (!isUrl(url)) return;
+
   let a = document.createElement('a');
   a.href = url;
   let domainFilter = a.hostname.replace(/.*\.(.*)\..*$/i, '$1');
@@ -23,30 +46,7 @@ const updateCookiesList = url => {
   } else {
     $('#cookiesOut').html(chrome.i18n.getMessage('none'));
   }
-};
-
-$('#objectUrl').on('focus', () => {
-  updateCookiesList($('#objectUrl').val());
-});
-$('#objectUrl').on('change', () => {
-  updateCookiesList($('#objectUrl').val());
-});
-
-$('#sendToRemote').on('click', () => {
-  let requestPayload = {
-    url: $('#objectUrl').val(),
-    header: {
-      cookie: ''
-    },
-    userAgent: navigator.userAgent,
-    cookies: document.cookiesArray
-  };
-  document.cookiesArray.forEach(cookie => {
-    requestPayload.header.cookie += cookie.name + '=' + cookie.value + ';';
-  });
-  console.log(requestPayload);
-});
+}
 
 chrome.browserAction.setBadgeText({text: '0'});
 chrome.browserAction.setBadgeBackgroundColor({color: '#4688F1'});
-

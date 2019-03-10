@@ -12,8 +12,12 @@
     "description": "Extension icon tooltip when extension is active."
   },
   "default_title_inactive": {
-    "message": "Simple Download Delegator is inactive",
+    "message": "Simple Download Delegator ist deaktiviert",
     "description": "Extension icon tooltip when extension is inactive."
+  },
+  "options_page_h1": {
+    "message": "Download Delegator Einstellungen",
+    "description": "h1 title for the options/settings page."
   },
   "target_label": {
     "message": "Remote target URL",
@@ -24,12 +28,28 @@
     "description": "Default target."
   },
   "target_helper_text": {
-    "message": "Please enter a valid URL.",
+    "message": "Bitte eine gültige URL eingeben.",
     "description": "Default target helper text."
+  },
+  "target_input_success": {
+    "message": "Die eingegebene URL ist gültig.",
+    "description": "Remote target URL validation success text."
+  },
+  "target_input_error": {
+    "message": "Die eingegebene URL ist ungültig.",
+    "description": "Remote target URL validation error text."
   },
   "settings_save_button": {
     "message": "Speichern",
     "description": "Save button inner html."
+  },
+  "settings_save_success": {
+    "message": "Die Einstellungen wurden erfolgreich übernommen.",
+    "description": "Message when settings have been successfully saved."
+  },
+  "settings_save_error": {
+    "message": "Das Speichern der Einstellungen ist leider fehlgeschlagen.",
+    "description": "Message when saving settings have failed."
   },
   "go_to_options": {
     "message": "Setup",
@@ -70,7 +90,7 @@
     "description": "Delete all filter results button text."
   },
   "cookie_manager": {
-    "message": "Cookie Manager öffnen",
+    "message": "Cookies",
     "Description": "Open cookie manager button text"
   },
   "clear_filter": {

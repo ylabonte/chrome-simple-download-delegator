@@ -15,6 +15,10 @@
     "message": "Simple Download Delegator is inactive",
     "description": "Extension icon tooltip when extension is inactive."
   },
+  "options_page_h1": {
+    "message": "Download Delegator Settings",
+    "description": "h1 title for the options/settings page."
+  },
   "target_label": {
     "message": "Remote target URL",
     "description": "Default target label."
@@ -27,9 +31,25 @@
     "message": "Please enter a valid URL (http[s]://<host>[:<port>][/<path>][?<query params>]).",
     "description": "Default target helper text."
   },
+  "target_input_success": {
+    "message": "The given URL validates.",
+    "description": "Remote target URL validation success text."
+  },
+  "target_input_error": {
+    "message": "This is not a valid URL.",
+    "description": "Remote target URL validation error text."
+  },
   "settings_save_button": {
     "message": "Save",
     "description": "Save button inner html."
+  },
+  "settings_save_success": {
+    "message": "Your settings were successfully saved.",
+    "description": "Message when settings have been successfully saved."
+  },
+  "settings_save_error": {
+    "message": "An error occurred while trying to save your settings.",
+    "description": "Message when saving settings have failed."
   },
   "go_to_options": {
     "message": "Open settings",
@@ -70,7 +90,7 @@
     "description": "Delete all filter results button text."
   },
   "cookie_manager": {
-    "message": "Open Cookie Manager",
+    "message": "Cookies",
     "description": "Open cookie manager button text"
   },
   "clear_filter": {

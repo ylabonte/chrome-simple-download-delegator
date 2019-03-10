@@ -13,9 +13,18 @@
 </head>
 <body>
 <div class="row">
+    <div class="col s12 right-align">
+        <button class="waves-effect waves-light btn-floating" id="cookieManager" data-i18n-message="cookie_manager" data-i18n-attribute="data-tooltip" data-position="bottom">
+            <i class="material-icons">table_chart</i>
+        </button>
+        <button class="waves-effect waves-light btn-floating" id="goToOptions" data-i18n-message="go_to_options" data-i18n-attribute="data-tooltip" data-position="bottom">
+            <i class="material-icons">settings</i>
+        </button>
+    </div>
+
     <div class="col s12">
         <div class="input-field file-field">
-            <button class="btn-floating btn blue" data-clipboard-to="#objectUrl" data-i18n-message="copy_from_clipboard" data-i18n-attribute="data-tooltip">
+            <button class="btn-floating btn blue" data-clipboard-to="#objectUrl" data-auto-paste="true" data-i18n-message="copy_from_clipboard" data-i18n-attribute="data-tooltip">
                 <i class="material-icons left">arrow_forward</i>
             </button>
             <div class="file-path-wrapper">
@@ -26,29 +35,17 @@
         </div>
     </div>
 
-    <blockquote class="col s12" style="overflow: scroll;">
-        <div class="green-text" id="basicAuthOut">No HTTP Basic Auth for current page detected</div>
-        <div>Detected Cookies:</div>
-        <code id="cookiesOut">
-            None
-        </code>
-    </blockquote>
-
-    <div class="col s4">
-        <button class="waves-effect waves-light btn col m6 s12" id="goToOptions" data-i18n-message="go_to_options">
-            <i class="material-icons left">settings</i>
-        </button>
-    </div>
-    <div class="col s4">
-        <button class="waves-effect waves-light btn col m6 s12" id="cookieManager" data-i18n-message="cookie_manager">
-            <i class="material-icons left">table_chart</i>
-        </button>
-    </div>
-    <div class="col s4">
-        <button class="waves-effect waves-light btn col m6 s12" id="sendToRemote" data-i18n-message="send_to_remote">
+    <div class="col s4 right">
+        <button class="waves-effect waves-light btn col m6 s12 green" id="sendToRemote" data-i18n-message="send_to_remote">
             <i class="material-icons right">send</i>
         </button>
     </div>
+
+    <blockquote class="col s12" style="overflow: scroll; max-height: 600px;">
+        <div class="green-text" id="basicAuthOut">No HTTP Basic Auth for current page detected</div>
+        <div>Detected Cookies:</div>
+        <code id="cookiesOut" data-i18n-message="none"></code>
+    </blockquote>
 </div>
 <script src="vendor/jquery/jquery-3.3.1.min.js"></script>
 <script src="vendor/materialize/js/materialize.min.js"></script>

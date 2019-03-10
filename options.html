@@ -7,25 +7,34 @@
 </head>
 <body>
 <div class="row">
-    <form class="col s12">
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="remote_target" type="url" class="validate">
-                <label for="remote_target" data-i18n-message="target_label"></label>
-                <span class="helper-text" data-error="wrong" data-success="right" data-i18n-message="target_helper_text"></span>
+    <div class="col s12 m6">
+        <form novalidate>
+            <div class="card">
+                <div class="card-content">
+                    <h1 class="card-title" data-i18n-message="options_page_h1">Settings</h1>
+                    <div class="input-field">
+                        <input id="remote_target" type="url" class="validate">
+                        <label for="remote_target" data-i18n-message="target_label"></label>
+                        <span class="helper-text"
+                              data-error="wrong" data-i18n-attribute-data-error="target_input_error"
+                              data-success="right" data-i18n-attribute-data-success="target_input_success"
+                              data-i18n-message="target_helper_text" data-i18n-attributes></span>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <div class="input-field right-align">
+                        <button id="save" class="waves-effect waves-light btn" data-i18n-message="settings_save_button">
+                            <i class="material-icons right">save</i>
+                        </button>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <button class="waves-effect waves-light btn" data-i18n-message="settings_save_button">
-                    <i class="material-icons right">save</i>
-                </button>
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
 </body>
 <script src="vendor/jquery/jquery-3.3.1.min.js"></script>
 <script src="vendor/materialize/js/materialize.min.js"></script>
+<script src="common.js"></script>
 <script src="options.js"></script>
 </html>
