@@ -4,3 +4,5 @@
 *.7z        binary
 *.min.js    binary
 *.min.css   binary
+*.psd       binary
+*.procreate binary

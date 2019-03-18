@@ -94,7 +94,9 @@ function isUrl(url) {
 }
 
 /**
- * Initialize copy from clipboard buttons
+ * Get text from clipboard.
+ *
+ * @returns {string}
  */
 function getClipboardText() {
   $('body').append($('<textarea id="pasteArea"></textarea>'));
@@ -102,9 +104,13 @@ function getClipboardText() {
   document.execCommand('paste');
   let text = $('#pasteArea').val();
   $('#pasteArea').remove();
-  return text;
+  return text.toString();
 }
-$('[data-clipboard-to]').toArray().forEach(item => {
+
+/**
+ * Initialize copy from clipboard buttons.
+ */
+$('[data-clipboard-to]').each((idx, item) => {
   const $item = $(item);
   const $target = $($item.data('clipboard-to'));
   const clipboardText = getClipboardText();
@@ -115,7 +121,6 @@ $('[data-clipboard-to]').toArray().forEach(item => {
       const $ti = $(targetItem);
       if ($ti.val().trim() == "") {
         $ti.val(clipboardText);
-        setTimeout(updateCookiesList(), 500);
       }
     });
   }

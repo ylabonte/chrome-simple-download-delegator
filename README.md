@@ -1,3 +1,16 @@
+<!--
+![Chrome Web Store](https://img.shields.io/chrome-web-store/v/asd.svg)
+![Chrome Web Store](https://img.shields.io/chrome-web-store/users/asd.svg)
+![Chrome Web Store](https://img.shields.io/chrome-web-store/rating/asd.svg)
+![Chrome Web Store](https://img.shields.io/chrome-web-store/rating-count/asd.svg)
+![Chrome Web Store](https://img.shields.io/chrome-web-store/price/asd.svg)
+-->
+![Google Chrome Extension](https://img.shields.io/badge/Download%20Delegator-Google%20Chrome%20Extension-blue.svg?style=popout&logo=google-chrome)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/ylabonte/dd-chrome-extension.svg?style=flat)
+[![License: LGPL v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg?style=flat)](https://www.gnu.org/licenses/lgpl-3.0)
+
+![npm](https://img.shields.io/npm/v/npm.svg?style=flat&logo=npm)
+
 # dd-chrome-extension - <small>a simple Download Delegator</small> (Google Chrome extension)
 
 This Google Chrome web browser Extension picks URLs from your clipboard and automatically collects all relevant 

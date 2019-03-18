@@ -1,0 +1,42 @@
+{
+  "name": "dd-chrome-extension",
+  "version": "1.0.0",
+  "description": "Download Delegator Chrome Extension",
+  "browser": "Google Chrome Extension",
+  "dependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/register": "^7.0.0",
+    "babel-preset-env": "^1.7.0",
+    "del": "^4.0.0",
+    "fs": "0.0.1-security",
+    "gulp": "^4.0.0",
+    "gulp-babel": "^8.0.0-beta.2",
+    "gulp-clean-css": "^4.0.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-terser": "^1.1.7",
+    "gulp-zip": "^4.2.0",
+    "jquery": "^3.3.1",
+    "materialize-css": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ylabonte/dd-chrome-extension.git"
+  },
+  "keywords": [
+    "chrome-extension",
+    "download",
+    "delegate",
+    "forward"
+  ],
+  "author": "Yannic Labonte <yannic.labonte@gmail.com>",
+  "license": "LGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/ylabonte/dd-chrome-extension/issues"
+  },
+  "homepage": "https://github.com/ylabonte/dd-chrome-extension#readme"
+}

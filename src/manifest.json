@@ -1,7 +1,7 @@
 {
   "name": "__MSG_name__",
-  "version": "0.1",
-  "version_name": "pre-alpha kevin",
+  "version": "1.0.0",
+  "version_name": "latest",
   "description": "__MSG_description__",
   "author": "Yannic Labonte <yannic.labonte@gmail.com>",
   "default_locale": "en",
@@ -38,13 +38,12 @@
     "open_in_tab": true
   },
   "content_scripts": [{
-    "js": ["content.js"],
+    "js": ["scripts/content.js"],
     "matches": ["*://*/*"]
   }],
   "background": {
     "scripts": [
-      "background_cookies.js",
-      "background.js"
+      "scripts/background.js"
     ]
   },
   "options_page": "options.html"

@@ -3,21 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="vendor/materialize/css/materialize.min.css" media="screen,projection">
-    <style>
-        body {
-            min-width: 320px;
-            width: 540px;
-        }
-    </style>
+    <link type="text/css" rel="stylesheet" href="styles/materialize.min.css" media="screen,projection">
+    <link type="text/css" rel="stylesheet" href="styles/popup.min.css" media="screen,projection">
 </head>
 <body>
 <div class="row">
     <div class="col s12 right-align">
-        <button class="waves-effect waves-light btn-floating" id="cookieManager" data-i18n-message="cookie_manager" data-i18n-attribute="data-tooltip" data-position="bottom">
-            <i class="material-icons">table_chart</i>
-        </button>
-        <button class="waves-effect waves-light btn-floating" id="goToOptions" data-i18n-message="go_to_options" data-i18n-attribute="data-tooltip" data-position="bottom">
+        <button class="waves-effect waves-light btn-floating grey" id="goToOptions" data-i18n-message="go_to_options" data-i18n-attribute="data-tooltip" data-position="bottom">
             <i class="material-icons">settings</i>
         </button>
     </div>
@@ -36,21 +28,25 @@
     </div>
 
     <div class="col s4 right">
-        <button class="waves-effect waves-light btn col m6 s12 green" id="sendToRemote" data-i18n-message="send_to_remote">
+        <button class="waves-effect waves-light btn col m6 s12 blue" id="sendToRemote" data-i18n-message="send_to_remote">
             <i class="material-icons right">send</i>
         </button>
     </div>
 
-    <blockquote class="col s12" style="overflow: scroll; max-height: 600px;">
-        <div class="green-text" id="basicAuthOut">No HTTP Basic Auth for current page detected</div>
-        <div>Detected Cookies:</div>
-        <code id="cookiesOut" data-i18n-message="none"></code>
-    </blockquote>
+    <div class="col s12">
+        <div>Metadata detection</div>
+        <blockquote class="col s12" style="overflow: scroll; max-height: 600px;">
+            <!--<div class="green-text" id="basicAuthOut">No HTTP Basic Auth for current page detected</div>-->
+            <div id="cookiesOut">
+                <code data-i18n-message="none"></code>
+                <div class="progress hide"><div class="indeterminate"></div></div>
+            </div>
+        </blockquote>
+    </div>
 </div>
-<script src="vendor/jquery/jquery-3.3.1.min.js"></script>
-<script src="vendor/materialize/js/materialize.min.js"></script>
-<script src="common.js"></script>
-<script src="cookies_base.js"></script>
-<script src="popup.js"></script>
+<script src="scripts/jquery.min.js"></script>
+<script src="scripts/materialize.min.js"></script>
+<script src="scripts/common.min.js"></script>
+<script src="scripts/popup.min.js"></script>
 </body>
 </html>
