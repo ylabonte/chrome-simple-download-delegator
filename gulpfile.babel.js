@@ -115,7 +115,6 @@ exports.clean = series(
 
 // Public `build` task.
 exports.build = series(
-  exports.clean,
   parallel(jQueryInclude, materializeCssInclude, materializeJsInclude),
   parallel(cssTranspile, jsTranspile, copyLanguageFiles),
   parallel(imgCopy, htmlCopy, cssMinify, jsMinify, writeManifest)
@@ -129,9 +128,12 @@ exports.pack = series(
 
 // Public `watch`task.
 exports.watch = series(
-  exports.build,
   doWatch,
 );
 
 // Public default task (`pack`).
-exports.default = exports.pack;
+exports.default = series(
+  exports.clean,
+  exports.build,
+  exports.watch
+);

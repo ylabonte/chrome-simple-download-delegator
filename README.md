@@ -5,10 +5,10 @@
 ![Chrome Web Store](https://img.shields.io/chrome-web-store/rating-count/asd.svg)
 ![Chrome Web Store](https://img.shields.io/chrome-web-store/price/asd.svg)
 -->
-![Google Chrome Extension](https://img.shields.io/badge/Download%20Delegator-Google%20Chrome%20Extension-blue.svg?style=popout&logo=google-chrome)
+![Google Chrome Extension](https://img.shields.io/badge/Google%20Chrome-Extension-blue.svg?style=popout&logo=google-chrome)
+
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/ylabonte/dd-chrome-extension.svg?style=flat)
 [![License: LGPL v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg?style=flat)](https://www.gnu.org/licenses/lgpl-3.0)
-
 ![npm](https://img.shields.io/npm/v/npm.svg?style=flat&logo=npm)
 
 # dd-chrome-extension - <small>a simple Download Delegator</small> (Google Chrome extension)
@@ -36,6 +36,24 @@ This project is under active development. Most of the features are not yet imple
 * Add auto-recognition of additional authentication headers.
 * Write appropriate documentation including screenshots.
 * Add capability to scan current tab for potential file downloads by regex pattern.
+
+
+## Development
+
+### Requirements
+* node ^11
+* npm ^6
+
+### Getting started
+Basically you just have to clone the repo, install dependencies. Afterwards you can build and watch your sources for 
+changes to automatically rebuild the specific source files.
+
+```bash
+$ git clone https://github.com/ylabonte/dd-chrome-extension.git
+$ npm install
+$ gulp
+```
+
 
 
 ## FAQ
