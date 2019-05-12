@@ -23,6 +23,14 @@
     "message": "Remote target URL",
     "description": "Default target label."
   },
+  "target_user_label": {
+    "message": "Basic Auth Username",
+    "description": "Basic auth user label."
+  },
+  "target_pass_label": {
+    "message": "Basic Auth Password",
+    "description": "Basic auth password label."
+  },
   "target_placeholder": {
     "message": "http[s]://<host>[:<port>][/<path>][?<query params>]",
     "description": "Default target."

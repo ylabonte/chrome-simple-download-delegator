@@ -18,9 +18,7 @@ function updateCookiesList() {
       cookies.forEach(cookie => {
         $('#cookiesOut > progress').hide();
         $('#cookiesOut > code').append(
-          (cookie.secure ? 'https://' : '') + (cookie.httpOnly ? 'http://' : '') +
-          (cookie.domain.startsWith('.') ? '*' : '') + cookie.domain + cookie.path + ': ' +
-          cookie.name + '= ' + decodeURIComponent(cookie.value) + ";<br>\n"
+          `${cookie.domain}${cookie.path}: ${cookie.name}="${decodeURIComponent(cookie.value)}"<br>\n`
         );
       });
     } else {
@@ -34,15 +32,43 @@ function updateCookiesList() {
  * Send download to remote service.
  */
 function delegateDownload() {
-  console.log(cookieList);
-  let requestPayload = {
+  let requestPayload = [{
     url: $('#objectUrl').val(),
     header: [
       `User-Agent: ${navigator.userAgent}`,
       `Cookie: ${cookieList.map(cookie => `${cookie.name}=${cookie.value};`).join('')}`,
     ],
-  };
-  console.log(requestPayload);
+  }];
+  chrome.storage.sync.get(['remote_target', 'username', 'password'], (result) => {
+    console.log(result);
+    if ('remote_target' in result) {
+      let settings = result;
+      let url = settings.remote_target;
+      $.ajax(url, {
+        type: 'POST',
+        contentType: 'application/json; charset=UTF-8',
+        dataType: 'json',
+        data: JSON.stringify(requestPayload),
+        beforeSend: (xhr) => {
+          if ('username' in settings && 'password' in settings &&
+            settings.username.length > 0 && settings.password.length > 0
+          ) {
+            console.info('Adding authorization header');
+            xhr.setRequestHeader('Authorization', 'Basic ' + btoa(settings.username + ':' + settings.password));
+          }
+        },
+      }).done((data, textStatus) => {
+        console.info(data);
+        console.debug(requestPayload);
+        M.toast({html: textStatus, classes: 'green darken-1'});
+      }).fail((xhr, textStatus, errorThrown) => {
+        console.error(textStatus, xhr, errorThrown);
+        M.toast({html: `${xhr.responseJSON.error}: ${xhr.responseJSON.message}`, classes: 'red darken-1'});
+      });
+    } else {
+      console.error('Missing settings');
+    }
+  });
 }
 
 /**

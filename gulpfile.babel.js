@@ -8,7 +8,7 @@ const zip = require('gulp-zip');
 const del = require('del');
 const fs = require('fs');
 const packageInfo = JSON.parse(fs.readFileSync('./package.json'));
-let manifest = JSON.parse(fs.readFileSync('./src/manifest.json'));
+let manifest = JSON.parse(fs.readFileSync('./manifest.json'));
 
 function cleanBuild() {
   return del('build/');
@@ -93,12 +93,12 @@ function zipPackage() {
 
 function writeManifest(cb) {
   manifest.version = packageInfo.version;
-  fs.writeFileSync('./build/manifest.json', JSON.stringify(manifest));
+  fs.writeFileSync('./build/manifest.json', JSON.stringify(manifest, null, 2));
   cb();
 }
 
 function doWatch() {
-  watch('src/manifest.json', writeManifest);
+  watch('manifest.json', writeManifest);
   watch('src/*.html', htmlCopy);
   watch('src/_locales/**/*.json', copyLanguageFiles);
   watch('src/images/**/*', imgCopy);
