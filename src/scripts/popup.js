@@ -7,25 +7,40 @@ function updateCookiesList() {
   const url = $('#objectUrl').val();
   if (!isUrl(url)) return;
 
-  let a = document.createElement('a');
-  a.href = url;
-  // let domainFilter = a.hostname.replace(/.*\.(.*)\..*$/i, '$1');
-  chrome.cookies.getAll({url: url}, (cookies) => {
-    cookieList = cookies;
-    if (cookies.length > 0) {
-      $('#cookiesOut > code').html('');
-      $('#cookiesOut > progress').show();
-      cookies.forEach(cookie => {
-        $('#cookiesOut > progress').hide();
-        $('#cookiesOut > code').append(
-          `${cookie.domain}${cookie.path}: ${cookie.name}="${decodeURIComponent(cookie.value)}"<br>\n`
-        );
+  // let a = document.createElement('a');
+  // a.href = url;
+  // console.log(a.hostname);
+
+  chrome.tabs.query({ currentWindow: true, active : true }, (tabs) => {
+    let activeTab = tabs[0].id;
+    chrome.cookies.getAllCookieStores((cookieStores) => {
+      cookieStores.forEach((cookieStore) => {
+        if (cookieStore.tabIds.indexOf(activeTab) >= 0) {
+          chrome.cookies.getAll({ storeId: cookieStore.id, url: url }, (cookies) => {
+            cookies.forEach((cookie) => {
+              cookieList.push(cookie);
+            });
+          });
+        }
       });
-    } else {
-      $('#cookiesOut > progress').hide();
-      $('#cookiesOut > code').html(_('none'));
-    }
+    });
   });
+}
+
+function updateCookieListView() {
+  if (cookieList.length > 0) {
+    $('#cookiesOut > code').html('');
+    $('#cookiesOut > progress').show();
+    cookieList.forEach(cookie => {
+      $('#cookiesOut > progress').hide();
+      $('#cookiesOut > code').append(
+        `${cookie.domain}${cookie.path}: ${cookie.name}="${decodeURIComponent(cookie.value)}"<br>\n`
+      );
+    });
+  } else {
+    $('#cookiesOut > progress').hide();
+    $('#cookiesOut > code').html(_('none'));
+  }
 }
 
 /**
@@ -82,6 +97,7 @@ $(document).ready(() => {
 
   $('#sendToRemote').on('click', delegateDownload);
 
+  setInterval(updateCookieListView, 1000);
   //@todo Poll for status and set the badge counter according to the number of downloads in progress.
   // chrome.browserAction.setBadgeText({text: '0'});
   // chrome.browserAction.setBadgeBackgroundColor({color: '#4688F1'});
