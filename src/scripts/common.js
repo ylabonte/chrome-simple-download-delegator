@@ -1,4 +1,18 @@
 /**
+ * Load extension settings into global `settings` var.
+ */
+let settings = {};
+function loadSettings() {
+  chrome.storage.sync.get(['remote_target', 'username', 'password'], (result) => {
+    if ('remote_target' in result) {
+      settings = result;
+    } else {
+      console.info('Missing settings', result);
+    }
+  });
+}
+
+/**
  * Focus or create tab with given URL.
  *
  * This function is used to avoid multiple open settings tabs.
@@ -53,35 +67,6 @@ function translateDom() {
     });
   });
 }
-translateDom();
-
-/**
- * Initialize materialize tooltips
- */
-window.Mtooltips = M.Tooltip.init($('[data-tooltip]'));
-
-/**
- * GoToOptions button functionality
- */
-$('#goToOptions').on('click', (e) => {
-  if (chrome.runtime.openOptionsPage) {
-    chrome.runtime.openOptionsPage();
-  } else {
-    window.open(chrome.runtime.getURL('options.html'));
-  }
-});
-
-/**
- * Open Cookie Manager button functionality
- */
-$('#cookieManager').on('click', (e) => {
-  if (chrome.extension.getURL) {
-    var manager_url = chrome.extension.getURL("cookies.html");
-    focusOrCreateTab(manager_url);
-  } else {
-    window.open(chrome.runtime.getURL('cookies.html'));
-  }
-});
 
 /**
  * Check whether the given string is a valid URL.
@@ -107,27 +92,60 @@ function getClipboardText() {
   return text.toString();
 }
 
-/**
- * Initialize copy from clipboard buttons.
- */
-$('[data-clipboard-to]').each((idx, item) => {
-  const $item = $(item);
-  const $target = $($item.data('clipboard-to'));
-  const clipboardText = getClipboardText();
-  const autoPaste = $item.data('auto-paste') && isUrl(clipboardText);
 
-  if (autoPaste) {
-    $target.toArray().forEach(targetItem => {
-      const $ti = $(targetItem);
-      if ($ti.val().trim() == "") {
-        $ti.val(clipboardText);
-      }
-    });
-  }
+$(document).ready(() => {
+  translateDom();
 
-  $item.on('click', () => {
-    $target.toArray().forEach(targetItem => {
-      $(targetItem).val(getClipboardText());
+  /**
+   * Initialize materialize tooltips
+   */
+  window.Mtooltips = M.Tooltip.init($('[data-tooltip]'));
+
+  /**
+   * GoToOptions button functionality
+   */
+  $('#goToOptions').on('click', (e) => {
+    if (chrome.runtime.openOptionsPage) {
+      chrome.runtime.openOptionsPage();
+    } else {
+      window.open(chrome.runtime.getURL('options.html'));
+    }
+  });
+
+  /**
+   * Open Cookie Manager button functionality
+   */
+  $('#cookieManager').on('click', (e) => {
+    if (chrome.extension.getURL) {
+      var manager_url = chrome.extension.getURL("cookies.html");
+      focusOrCreateTab(manager_url);
+    } else {
+      window.open(chrome.runtime.getURL('cookies.html'));
+    }
+  });
+
+  /**
+   * Initialize copy from clipboard buttons.
+   */
+  $('[data-clipboard-to]').each((idx, item) => {
+    const $item = $(item);
+    const $target = $($item.data('clipboard-to'));
+    const clipboardText = getClipboardText();
+    const autoPaste = $item.data('auto-paste') && isUrl(clipboardText);
+
+    if (autoPaste) {
+      $target.toArray().forEach(targetItem => {
+        const $ti = $(targetItem);
+        if ($ti.val().trim() == "") {
+          $ti.val(clipboardText);
+        }
+      });
+    }
+
+    $item.on('click', () => {
+      $target.toArray().forEach(targetItem => {
+        $(targetItem).val(getClipboardText());
+      });
     });
   });
 });

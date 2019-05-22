@@ -15,6 +15,10 @@
     "message": "Simple Download Delegator is inactive",
     "description": "Extension icon tooltip when extension is inactive."
   },
+  "context_menu_download": {
+    "message": "Delegate as file download",
+    "description": ""
+  },
   "options_page_h1": {
     "message": "Download Delegator Settings",
     "description": "h1 title for the options/settings page."

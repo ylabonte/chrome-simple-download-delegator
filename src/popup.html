@@ -34,19 +34,35 @@
     </div>
 
     <div class="col s12">
-        <div>Metadata detection</div>
-        <blockquote class="col s12" style="overflow: scroll; max-height: 600px;">
-            <!--<div class="green-text" id="basicAuthOut">No HTTP Basic Auth for current page detected</div>-->
-            <div id="cookiesOut">
-                <code data-i18n-message="none"></code>
-                <div class="progress hide"><div class="indeterminate"></div></div>
-            </div>
-        </blockquote>
+        <ul class="collapsible expandable">
+            <li>
+                <div class="collapsible-header">Metadata detection</div>
+                <div class="collapsible-body">
+                    <!--<div class="green-text" id="basicAuthOut">No HTTP Basic Auth for current page detected</div>-->
+                    <div id="cookiesOut">
+                        <code data-i18n-message="none"></code>
+                        <div class="progress hide"><div class="indeterminate"></div></div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header">
+                    Downloads
+                    <span id="downloadCounter"></span>
+                </div>
+                <div class="collapsible-body">
+                    <div id="downloadList">
+
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
 </div>
 <script src="scripts/jquery.min.js"></script>
 <script src="scripts/materialize.min.js"></script>
-<script src="scripts/common.min.js"></script>
-<script src="scripts/popup.min.js"></script>
+<script src="scripts/download.js"></script>
+<script src="scripts/common.js"></script>
+<script src="scripts/popup.js"></script>
 </body>
 </html>

@@ -25,10 +25,11 @@
     "default_popup": "popup.html"
   },
   "permissions": [
-    "clipboardRead",
     "activeTab",
-    "storage",
+    "clipboardRead",
+    "contextMenus",
     "cookies",
+    "storage",
     "tabs",
     "http://*/*",
     "https://*/*"
@@ -43,6 +44,9 @@
   }],
   "background": {
     "scripts": [
+      "scripts/jquery.min.js",
+      "scripts/materialize.min.js",
+      "scripts/common.js",
       "scripts/background.js"
     ]
   },
