@@ -1,6 +1,19 @@
 body {
-    min-width: 320px;
+    /*min-width: 320px;*/
     width: 540px;
+}
+
+body > *:first-child {
+    margin-top: 8px;
+}
+
+.collapsible-header > h2 {
+    font-size: 18px;
+    margin: 0;
+}
+
+#download-url {
+    margin: 0;
 }
 
 .download {

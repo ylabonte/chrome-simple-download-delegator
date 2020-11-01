@@ -1,12 +1,7 @@
-loadSettings();
-
 chrome.runtime.onInstalled.addListener(() => {
-  chrome.browserAction.setBadgeText({
-    text: '0'
-  });
-  chrome.browserAction.setBadgeBackgroundColor({
-    color: '#4688F1'
-  });
+  //@todo Poll for status and set the badge counter according to the number of downloads in progress.
+  // chrome.browserAction.setBadgeText({text: '0'});
+  // chrome.browserAction.setBadgeBackgroundColor({color: '#4688F1'});
 
   chrome.contextMenus.create({
     id: 'download',
@@ -50,9 +45,22 @@ chrome.runtime.onInstalled.addListener(() => {
                     }
                   }).done((data, textStatus) => {
                     console.debug(textStatus, requestPayload, data);
+                    chrome.tabs.sendMessage(tab.id, {
+                      type: 'toast',
+                      toast: {
+                        html: _('download_sent'),
+                        classes: 'green darken-1'
+                      }
+                    });
                   }).fail((xhr, textStatus, errorThrown) => {
                     console.error(textStatus, xhr, errorThrown);
-                    alert(`Download failed with following reason: ${textStatus}`);
+                    chrome.tabs.sendMessage(tab.id, {
+                      type: 'toast',
+                      toast: {
+                        html: _('download_sent'),
+                        classes: 'red darken-1'
+                      }
+                    });
                   });
                 });
               }

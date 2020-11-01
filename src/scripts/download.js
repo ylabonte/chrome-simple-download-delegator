@@ -4,7 +4,9 @@ const Download = {
     'INITIALIZED', //1
     'WAITING', //2
     'PROGRESSING', //3
-    'SUCCEEDED', //4
-    'FAILED' //5
+    'PAUSED', //4
+    'SUCCEEDED', //5
+    'FAILED', //6
+    'ABORTED'
   ]
 };

@@ -1,5 +1,7 @@
 let cookieList = [];
 let downloadList = [];
+let autoUpdateDownloadList = true;
+let autoUpdateDownloadListNext = null;
 
 /**
  * Update the collected cookies list.
@@ -107,19 +109,84 @@ function getProgressBarView(download) {
 }
 
 function updateDownloadListView() {
+  const listView = $('#downloadList').html('');
   if (downloadList.length > 0) {
-    const listView = $('#downloadList').html('');
     downloadList.forEach((download) => {
       let downloadView = $(getDownloadView(download.id));
-      const downloadDst = download.destination.split('/');
-      const downloadProgress = (Number(download.progress) * 100).toPrecision(3);
+      const downloadDst = download.destination ? download.destination.split('/') : download.url;
 
       downloadView.append($(`<h4>${downloadDst[downloadDst.length - 1]}</h4>`))
-                  .append(getProgressTextView(download))
-                  .append(getProgressBarView(download));
+                  .append(getProgressTextView(download));
+
+      const downloadStatus = Download.Status.indexOf(download.status);
+      let progressBarClass = 'indeterminate';
+      let progressBarStyle = '';
+
+      if (downloadStatus > 5) {
+        progressBarClass = 'determinate red darken-4';
+        progressBarStyle += 'width: 100%;'
+      } else if (downloadStatus > 4) {
+        progressBarClass = 'determinate green darken-1';
+        progressBarStyle += 'width: 100%;'
+      } else if (downloadStatus > 3) {
+        progressBarClass += ' blue darken-4';
+      } else if (downloadStatus > 2) {
+        progressBarClass = 'determinate blue darken-4';
+        progressBarStyle += `width: ${Number(Number(download.progress) * 100).toFixed(2)}%;`;
+      } else {
+        progressBarClass += ' blue darken-4';
+      }
+
+      downloadView.append($(`<div class="progress"><div class="${progressBarClass}" style="${progressBarStyle}"></div></div>`));
+
+      if ('PROGRESSING' === download.status) {
+        downloadView.prepend($(`<a class="waves-effect waves-light orange-text text-darken-1 right" data-function="pause" data-id="${download.id}"><i class="material-icons">pause</i></a>`));
+      }
+      if (['PAUSED', 'ABORTED', 'FAILED'].indexOf(download.status) >= 0) {
+        downloadView.prepend($(`<a class="waves-effect waves-light green-text text-darken-1 right" data-function="resume" data-id="${download.id}"><i class="material-icons">play_arrow</i></a>`));
+      }
+      if (['FAILED', 'PAUSED', 'PROGRESSING', 'SUCCEEDED'].indexOf(download.status) >= 0) {
+        downloadView.prepend($(`<a class="waves-effect waves-light red-text text-darken-1 right" data-function="abort" data-id="${download.id}"><i class="material-icons">stop</i></a>`));
+      }
+      if (['SUCCEEDED', 'FAILED', 'ABORTED'].indexOf(download.status) >= 0) {
+        downloadView.prepend($(`<a class="waves-effect waves-light red-text text-darken-1 right" data-function="remove" data-id="${download.id}"><i class="material-icons">remove_circle_outline</i></a>`));
+      }
+
       listView.append(downloadView);
     });
+  } else {
+    const noDownloadsListed = $(`<div class="">${_('no_downloads_listed')}</div>`);
+    listView.append(noDownloadsListed);
   }
+
+  $('a[data-function]').on('click', (event) => {
+    const func = $(event.currentTarget).data('function');
+    const id = $(event.currentTarget).data('id');
+    downloadAction(func, id);
+  });
+}
+
+function downloadAction(action, id) {
+  const baseUrl = settings.remote_target.endsWith('/') ? settings.remote_target : (settings.remote_target + '/');
+
+  $.ajax(baseUrl + action, {
+    type: 'POST',
+    contentType: 'application/json; charset=UTF-8',
+    data: JSON.stringify({ids: [id]}),
+    beforeSend: (xhr) => {
+      if ('username' in settings && 'password' in settings &&
+        settings.username.length > 0 && settings.password.length > 0
+      ) {
+        console.info('Adding authorization header');
+        xhr.setRequestHeader('Authorization', 'Basic ' + btoa(settings.username + ':' + settings.password));
+      }
+    },
+  }).done((data, textStatus) => {
+    M.toast({html: textStatus, classes: 'green darken-1'});
+  }).fail((xhr, textStatus, errorThrown) => {
+    console.error(textStatus, xhr, errorThrown);
+    M.toast({html: `${xhr.responseJSON.error}: ${xhr.responseJSON.message}`, classes: 'red darken-1'});
+  });
 }
 
 /**
@@ -172,13 +239,16 @@ function updateDownloadList() {
   }).done((data, textStatus) => {
     if (data.downloads !== undefined) {
       downloadList = data.downloads;
-      // chrome.browserAction.setBadgeText({text: data.currentDownloads.length});
       $('#downloadCounter').html(`(${data.currentDownloads.length > 0 ? data.currentDownloads.length + '/' : ''}${data.downloads.length})`)
       updateDownloadListView();
     }
   }).fail((xhr, textStatus, errorThrown) => {
     console.error('Error getting download list', textStatus);
     console.debug(textStatus, xhr, errorThrown);
+  }).always(() => {
+    if (autoUpdateDownloadList) {
+      autoUpdateDownloadListNext = setTimeout(updateDownloadList, 300);
+    }
   });
 }
 
@@ -192,18 +262,26 @@ $(document).ready(() => {
     updateCookiesList();
   });
 
-  const periodicUpdateDownloadList = () => {
-    updateDownloadList();
-    updateDownloadListView();
-    setTimeout(periodicUpdateDownloadList, 1000);
-  };
-  periodicUpdateDownloadList();
+  updateDownloadList();
 
   loadSettings();
   $('#sendToRemote').on('click', delegateDownload);
 
   setInterval(updateCookieListView, 1000);
-  //@todo Poll for status and set the badge counter according to the number of downloads in progress.
-  // chrome.browserAction.setBadgeText({text: '0'});
-  // chrome.browserAction.setBadgeBackgroundColor({color: '#4688F1'});
+
+  $('#toggleAutoRefresh').on('click', (e) => {
+    autoUpdateDownloadList = !autoUpdateDownloadList;
+    if (autoUpdateDownloadList) {
+      $('#toggleAutoRefresh').addClass('blue-text text-darken-1').removeClass('grey-text text-darken-2');
+      periodicUpdateDownloadList();
+    } else {
+      $('#toggleAutoRefresh').addClass('grey-text text-darken-2').removeClass('blue-text text-darken-1');
+      clearTimeout(autoUpdateDownloadListNext);
+      autoUpdateDownloadListNext = null;
+    }
+  });
+
+  $('#refresh').on('click', (e) => {
+    updateDownloadList();
+  });
 });

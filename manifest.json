@@ -39,7 +39,10 @@
     "open_in_tab": true
   },
   "content_scripts": [{
-    "js": ["scripts/content.js"],
+    "js": [
+      "scripts/materialize.min.js",
+      "scripts/content.js"
+    ],
     "matches": ["*://*/*"]
   }],
   "background": {

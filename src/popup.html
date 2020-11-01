@@ -8,51 +8,53 @@
 </head>
 <body>
 <div class="row">
-    <div class="col s12 right-align">
-        <button class="waves-effect waves-light btn-floating grey" id="goToOptions" data-i18n-message="go_to_options" data-i18n-attribute="data-tooltip" data-position="bottom">
-            <i class="material-icons">settings</i>
-        </button>
-    </div>
-
     <div class="col s12">
-        <div class="input-field file-field">
-            <button class="btn-floating btn blue" data-clipboard-to="#objectUrl" data-auto-paste="true" data-i18n-message="copy_from_clipboard" data-i18n-attribute="data-tooltip">
-                <i class="material-icons left">arrow_forward</i>
-            </button>
-            <div class="file-path-wrapper">
-                <!--<input id="objectUrl" type="text">-->
-                <textarea id="objectUrl" class="materialize-textarea"></textarea>
-                <label for="objectUrl" data-i18n-message="object_url_label"></label>
-            </div>
-        </div>
+        <a class="waves-effect waves-light grey-text text-darken-2 right" id="goToOptions" data-i18n-message="tt_go_to_options" data-i18n-attribute="data-tooltip" data-position="bottom">
+            <i class="material-icons">settings</i>
+        </a>
+            <a class="waves-effect waves-light blue-text text-darken-1 right" id="toggleAutoRefresh" data-i18n-message="tt_toggle_auto_refresh" data-i18n-attribute="data-tooltip" data-position="bottom">
+            <i class="material-icons">autorenew</i>
+        </a>
+        <a class="waves-effect waves-light grey-text text-darken-2" id="refresh" data-i18n-message="tt_refresh" data-i18n-attribute="data-tooltip" data-position="bottom">
+            <i class="material-icons">refresh</i>
+        </a>
     </div>
-
-    <div class="col s4 right">
-        <button class="waves-effect waves-light btn col m6 s12 blue" id="sendToRemote" type="button" data-i18n-message="send_to_remote">
-            <i class="material-icons right">send</i>
-        </button>
-    </div>
-
+</div>
+<div class="row">
     <div class="col s12">
         <ul class="collapsible expandable">
             <li>
-                <div class="collapsible-header">Metadata detection</div>
+                <div class="collapsible-header"><h2 data-i18n-message="title_manual_link_inspection" data-i18n-replace>Manual link inspection</h2></div>
                 <div class="collapsible-body">
-                    <!--<div class="green-text" id="basicAuthOut">No HTTP Basic Auth for current page detected</div>-->
-                    <div id="cookiesOut">
+<!--                    <button class="btn-floating btn blue" data-clipboard-to="#objectUrl" data-auto-paste="true" data-i18n-message="copy_from_clipboard" data-i18n-attribute="data-tooltip">-->
+<!--                        <i class="material-icons left">arrow_forward</i>-->
+<!--                    </button>-->
+                    <div class="input-field" id="download-url">
+                        <textarea id="objectUrl" class="materialize-textarea"></textarea>
+                        <label for="objectUrl" data-i18n-message="object_url_label"></label>
+                    </div>
+                    <button class="waves-effect waves-light btn blue right" id="sendToRemote" type="button" data-i18n-message="send_to_remote">
+                        <i class="material-icons right">send</i>
+                    </button>
+                    <div class="clearfix"></div>
+
+                    <!-- Display all cookies associated with the given url -->
+                    <div class="col s12" id="cookiesOut">
                         <code data-i18n-message="none"></code>
                         <div class="progress hide"><div class="indeterminate"></div></div>
                     </div>
                 </div>
             </li>
-            <li>
+            <li class="active">
                 <div class="collapsible-header">
-                    Downloads
+                    <h2 data-i18n-message="title_downloads_list" data-i18n-replace>Downloads</h2>
                     <span id="downloadCounter"></span>
                 </div>
                 <div class="collapsible-body">
                     <div id="downloadList">
-
+                        <div class="progress">
+                            <div class="indeterminate blue darken-1"></div>
+                        </div>
                     </div>
                 </div>
             </li>

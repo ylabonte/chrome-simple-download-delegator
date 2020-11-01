@@ -1,5 +1,8 @@
-chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
-  switch (msg.text) {
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  switch (request.type) {
+    case 'toast':
+      M.toast(msg.toast);
+      break;
     case 'getLocation':
       sendResponse(document.location);
       break;

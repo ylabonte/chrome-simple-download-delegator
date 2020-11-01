@@ -63,7 +63,7 @@
     "message": "An error occurred while trying to save your settings.",
     "description": "Message when saving settings have failed."
   },
-  "go_to_options": {
+  "tt_go_to_options": {
     "message": "Open settings",
     "description": "Button: Go to options."
   },
@@ -112,5 +112,29 @@
   "none": {
     "message": "None",
     "description": "Will be displayed, when no cookies were found."
+  },
+  "download_sent": {
+    "message": "Successfully delegated your download",
+    "description": "Success message when server acknowledged transmission."
+  },
+  "title_manual_link_inspection": {
+    "message": "Manual link inspection",
+    "description": "Title for collapsible manual link inspection."
+  },
+  "title_downloads_list": {
+    "message": "Listed Downloads",
+    "description": "Title for collapsible download list."
+  },
+  "no_downloads_listed": {
+    "message": "There are no downloads listed yet.",
+    "description": "Title for collapsible download list."
+  },
+  "tt_toggle_auto_refresh": {
+    "message": "Enable/Disable auto-refreshing view",
+    "description": "Tooltip for download list auto-updates toggle button."
+  },
+  "tt_refresh": {
+    "message": "Refresh view",
+    "description": "Tooltip for download list auto-updates toggle button."
   }
 }
